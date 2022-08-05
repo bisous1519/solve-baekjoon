@@ -29,21 +29,14 @@ public class Main {
 				stack.push(new int[] {Top[i], i});
 				continue;
 			}
-			if(Top[i] >= stack.peek()[0]) {
-				while(!(stack.empty()) && Top[i] >= stack.peek()[0]) {
-					result[stack.pop()[1]] = i;
-				}
+			while(!(stack.empty()) && Top[i] >= stack.peek()[0]) {
+				result[stack.pop()[1]] = i;
 			}
 			stack.push(new int[] {Top[i], i});
 		}
-		while(!(stack.empty())){
-			result[stack.pop()[1]] = 0;
-		}
 		for(int i=1; i<=N; i++) {
-//			System.out.printf("%d ", result[i]);
 			output.append(result[i] + " ");
 		}
 		System.out.println(output);
 	}
-
 }
