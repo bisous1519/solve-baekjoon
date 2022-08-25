@@ -16,7 +16,7 @@
 
 <p>예를 들어, 다리의 길이 w는 2, 다리의 최대하중 L은 10, 다리를 건너려는 트럭이 트럭의 무게가 [7, 4, 5, 6]인 순서대로 다리를 오른쪽에서 왼쪽으로 건넌다고 하자. 이 경우 모든 트럭이 다리를 건너는 최단시간은 아래의 그림에서 보는 것과 같이 8 이다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/13335/1.png" style="height:214px; width:664px"></p>
+<p style="text-align: center;"><img alt="" src="" style="height:214px; width:664px"></p>
 
 <p style="text-align: center;">Figure 1. 본문의 예에 대해 트럭들이 다리를 건너는 과정.</p>
 
