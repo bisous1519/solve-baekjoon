@@ -4,13 +4,11 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.StringTokenizer;
 
 public class Main {
 
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
-	static StringTokenizer tokens;
 	
 	static String str;
 	static int length;
@@ -29,8 +27,8 @@ public class Main {
 		
 		M = Integer.parseInt(input.readLine());
 		for(int m=0; m<M; m++) {
-			tokens = new StringTokenizer(input.readLine());
-			char letter = tokens.nextToken().charAt(0);
+			str = input.readLine();
+			char letter = str.charAt(0);
 			switch(letter) {
 			case 'L' :
 				if(itr.hasPrevious()) itr.previous();
@@ -45,7 +43,7 @@ public class Main {
 				}
 				break;
 			case 'P' :
-				itr.add(tokens.nextToken().charAt(0));
+				itr.add(str.charAt(2));
 				break;
 			}
 		}
