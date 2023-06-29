@@ -4,7 +4,7 @@ let Max = 0;
 const countOddNum = (arr) => arr.filter((num) => num % 2 === 1).length;
 
 const recur = (N, cntOdd) => {
-  let arr = N.toString().split('');
+  let arr = N.split('');
   let len = arr.length;
 
   let sumCntOdd = cntOdd + countOddNum(arr);
@@ -15,27 +15,17 @@ const recur = (N, cntOdd) => {
     return;
   } else if (len === 2) {
     let temp = parseInt(arr[0]) + parseInt(arr[1]);
-    recur(temp, sumCntOdd);
+    recur(temp.toString(), sumCntOdd);
   } else if (len >= 3) {
     for (let i = 0; i < len - 2; i++) {
       for (let j = i + 1; j < len - 1; j++) {
         // 삼등분함
-        let [num1, num2, num3] = [0, 0, 0];
-        for (let k = 0; k <= i; k++) {
-          num1 *= 10;
-          num1 += parseInt(arr[k]);
-        }
-        for (let k = i + 1; k <= j; k++) {
-          num2 *= 10;
-          num2 += parseInt(arr[k]);
-        }
-        for (let k = j + 1; k < len; k++) {
-          num3 *= 10;
-          num3 += parseInt(arr[k]);
-        }
+        let num1 = parseInt(N.substring(0, i + 1));
+        let num2 = parseInt(N.substring(i + 1, j + 1));
+        let num3 = parseInt(N.substring(j + 1));
 
         // 세 개 수 만들어짐
-        recur(num1 + num2 + num3, sumCntOdd);
+        recur((num1 + num2 + num3).toString(), sumCntOdd);
       }
     }
   }
@@ -46,7 +36,7 @@ const main = () => {
     .readFileSync('/dev/stdin')
     .toString()
     .trim();
-  const N = parseInt(input);
+  const N = input;
 
   recur(N, 0);
   console.log(Min, Max);
