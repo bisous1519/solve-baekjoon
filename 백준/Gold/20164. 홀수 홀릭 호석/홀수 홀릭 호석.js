@@ -14,10 +14,7 @@ const recur = (N, cntOdd) => {
     Max = Math.max(Max, sumCntOdd);
     return;
   } else if (len === 2) {
-    let temp = 0;
-    arr.map((num) => {
-      temp += parseInt(num);
-    });
+    let temp = parseInt(arr[0]) + parseInt(arr[1]);
     recur(temp, sumCntOdd);
   } else if (len >= 3) {
     for (let i = 0; i < len - 2; i++) {
