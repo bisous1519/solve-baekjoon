@@ -1,17 +1,9 @@
 let Min = Number.MAX_SAFE_INTEGER;
 let Max = 0;
 
-function countOddNum(arr) {
-  let count = 0;
-  arr.map((num) => {
-    if (num % 2 === 1) {
-      count++;
-    }
-  });
-  return count;
-}
+const countOddNum = (arr) => arr.filter((num) => num % 2 === 1).length;
 
-function recur(N, cntOdd) {
+const recur = (N, cntOdd) => {
   let arr = N.toString().split('');
   let len = arr.length;
 
@@ -50,9 +42,9 @@ function recur(N, cntOdd) {
       }
     }
   }
-}
+};
 
-function main() {
+const main = () => {
   const input = require('fs')
     .readFileSync('/dev/stdin')
     .toString()
@@ -61,6 +53,6 @@ function main() {
 
   recur(N, 0);
   console.log(Min, Max);
-}
+};
 
 main();
