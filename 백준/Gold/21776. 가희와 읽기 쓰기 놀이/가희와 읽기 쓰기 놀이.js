@@ -75,10 +75,10 @@ const main = () => {
   const [n, c] = input[0].split(' ').map((num) => +num);
   N = n;
   C = c;
-  //   input.shift();
+  input.shift();
 
   for (let n = 0; n < N; n++) {
-    let tempArr = input[n + 1].split(' ');
+    let tempArr = input[0].split(' ');
 
     // 갖고있는 카드 개수만큼 그 사람 번호를 배열에 넣기
     CntCards.push(+tempArr[0]);
@@ -88,13 +88,13 @@ const main = () => {
     tempArr.shift();
 
     Order.push(tempArr.map((num) => +num));
-    // input.shift();
+    input.shift();
   } // 사람마다 갖고있는 카드와 순서 입력
   //   console.log('ArrangePersonNum', ArrangePersonNum);
 
   for (let c = 0; c < C; c++) {
-    Cards.push(input[N + 1 + c].split(',').map((str) => str.split(' ')[1]));
-    // input.shift();
+    Cards.push(input[0].split(',').map((str) => str.split(' ')[1]));
+    input.shift();
   } // 각 카드들 입력
 
   isSelected = new Array(C).fill(false);
