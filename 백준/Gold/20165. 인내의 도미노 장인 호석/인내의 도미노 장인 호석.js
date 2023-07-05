@@ -76,19 +76,10 @@ const main = () => {
   }
 
   // 출력
-  let answerStr = '';
-  answerStr += Score + '\n';
-  Map.map((column) => {
-    column.map((el) => {
-      if (el === 'F') {
-        answerStr += 'F' + ' ';
-      } else {
-        answerStr += 'S' + ' ';
-      }
-    });
-    answerStr += '\n';
-  });
-  console.log(answerStr);
+  const answerStr = Map.map((row) =>
+    row.map((el) => (el === 'F' ? 'F' : 'S')).join(' ')
+  ).join('\n');
+  console.log(Score + '\n' + answerStr);
 };
 
 main();
