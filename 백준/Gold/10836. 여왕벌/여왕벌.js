@@ -9,66 +9,56 @@
 
 let M, N;
 let Map;
-const dr = [0, -1, -1]; // L, D, U
-const dc = [-1, -1, 0];
-
-const Larva = function(size, grow) {
-    this.size = size;
-    this.grow = grow;
-}
 
 const main = () => {
     const input = require('fs').readFileSync(process.platform === 'linux' ? '/dev/stdin' : `${__dirname}/input.txt`).toString().trim().split('\n');
 
     [M, N] = input.shift().split(' ').map(el => +el);
 
-    Map = new Array(M).fill(null).map(() => new Array(M).fill(new Larva(1, 0)));
+    Map = new Array(M).fill(null).map(() => new Array(M).fill(1));
 
     input.forEach(row => {
         let grow = row.split(' ').map(el => +el);
 
         // 입력받은대로 첫열, 첫행 자라게 하고
-        let g = 0;
-        for(let i=M-1; i>=0; i--) {
+        let g = 1;
+        // 첫열
+        let i = (M-1) - grow[0];
+        while(i >= 0) {
             if(grow[g] === 0) {
                 g++;
-                i++;
                 continue;
             }
 
-            Map[i][0] = new Larva(Map[i][0].size + g, g);
+            Map[i][0] += g;
             grow[g]--;
+            i--;
         }
-        for(let i=1; i<M; i++) {
+        // 첫행
+        i = grow[0] <= M ? 1 : 1 + (grow[0] - M);
+        while(i < M) {
             if(grow[g] === 0) {
                 g++;
-                i--;
                 continue;
             }
 
-            Map[0][i] = new Larva(Map[0][i].size + g, g);
+            Map[0][i] += g;
             grow[g]--;
-        }
-
-        // 첫열, 첫행 자란거대로 나머지 배열 채우기
-        for(let r=1; r<M; r++) {
-            for(let c=1; c<M; c++) {
-                let maxGrow = 0;
-                for(let d=0; d<3; d++) {
-                    const goR = r + dr[d];
-                    const goC = c + dc[d];
-                    maxGrow = Math.max(maxGrow, Map[goR][goC].grow);
-                }
-
-                Map[r][c] = new Larva(Map[r][c].size + maxGrow, maxGrow);
-            }
+            i++;
         }
 
         // console.log(Map.map(row => row.map(el => el.size).join(' ')).join('\n'));
         // console.log('--------')
     })
 
-    console.log(Map.map(row => row.map(el => el.size).join(' ')).join('\n'));
+    // 첫열, 첫행 자란거대로 나머지 배열 채우기
+    for(let r=1; r<M; r++) {
+        for(let c=1; c<M; c++) {
+            Map[r][c] = Map[r-1][c];
+        }
+    }
+
+    console.log(Map.map(row => row.join(' ')).join('\n'));
 }
 
 main();
