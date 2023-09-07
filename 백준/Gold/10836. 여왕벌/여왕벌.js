@@ -9,6 +9,8 @@
 
 let M, N;
 let Map;
+const dr = [0, -1, -1];
+const dc = [-1, -1, 0];
 
 const main = () => {
     const input = require('fs').readFileSync(process.platform === 'linux' ? '/dev/stdin' : `${__dirname}/input.txt`).toString().trim().split('\n');
@@ -54,7 +56,12 @@ const main = () => {
     // 첫열, 첫행 자란거대로 나머지 배열 채우기
     for(let r=1; r<M; r++) {
         for(let c=1; c<M; c++) {
-            Map[r][c] = Map[r-1][c];
+            let max = 0;
+            for(let d=0; d<3; d++) {
+                max = Math.max(max, Map[r+dr[d]][c+dc[d]]);
+            }
+
+            Map[r][c] = max;
         }
     }
 
