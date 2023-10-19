@@ -32,8 +32,7 @@ let parents;
 
 const find = (a) => {
     if(parents[a] === a) return a;
-    parents[a] = find(parents[a]);
-    return parents[a];
+    return parents[a] = find(parents[a]);
 }
 
 const union = (a, b) => {
