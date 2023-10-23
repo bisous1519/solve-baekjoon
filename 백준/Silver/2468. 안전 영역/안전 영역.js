@@ -13,9 +13,7 @@
 //          - 안전 영역 개수 세기 -> 최댓값 갱신
 
 let N;
-let Map;
-let hList = [];
-let height = {}; // 각 높이마다 해당 좌표배열 저장
+let Map = [];
 let isVisited;
 let max = 1;
 const dr = [-1, 0, 1, 0]; // 위오아왼
@@ -57,23 +55,29 @@ const main = () => {
     const input = require('fs').readFileSync(process.platform === 'linux' ? '/dev/stdin' : `${__dirname}/input.txt`).toString().trim().split('\n');
 
     N = +input.shift();
-    Map = input.map((row, r) => row.split(' ').map((el, c) => {
-        height = {
-            ...height,
-            [+el] : [...(height[+el] ? height[+el] : []), new Loc(r, c)],
-        };
 
-        return +el;
-    }));
-    
-    // 객체는 순서 보장이 안됨
-    // -> .keys로 키값 배열을 뽑으면 지금 키가 숫자기 때문에 오름차순 정렬됨
-    hList = Object.keys(height);
-    hList.forEach((h, nth) => {
-        // 높이 h 인 곳 침수 (낮은곳부터)
-        height[h].forEach(loc => {
-            Map[loc.r][loc.c] = 0;
-        })
+    let minH = 101;
+    let maxH = -1;
+    let isThere = new Array(101).fill(false);
+    input.forEach(row => {
+        const arr = row.split(' ').map(el => +el);
+        Map.push(arr);
+
+        arr.forEach(el => isThere[el] = true);
+
+        minH = Math.min(minH, ...arr);
+        maxH = Math.max(maxH, ...arr);
+    })
+
+    for(let h=minH; h<=maxH; h++) {
+        if(!isThere[h]) continue;
+
+        // 높이 h인 곳 침수
+        for(let r=0; r<N; r++) {
+            for(let c=0; c<N; c++) {
+                if(Map[r][c] === h) Map[r][c] = 0;
+            }
+        }
 
         // 안전영역 개수 구하기
         let safeCnt = 0;
@@ -81,15 +85,17 @@ const main = () => {
         for(let r=0; r<N; r++) {
             for(let c=0; c<N; c++) {
                 if(Map[r][c] !== 0 && !isVisited[r][c]) {
-                    bfs(new Loc(r, c));
+                    isVisited[r][c] = true;
                     safeCnt ++;
+
+                    bfs(new Loc(r, c));
                 }
             }
         }
-
+        
         // 최대개수 갱신
         max = Math.max(max, safeCnt);
-    })
+    }
 
     console.log(max);
 }
