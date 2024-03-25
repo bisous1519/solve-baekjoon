@@ -4,11 +4,15 @@
 
 ### 성능 요약
 
-메모리: 12792 KB, 시간: 96 ms
+메모리: 9624 KB, 시간: 168 ms
 
 ### 분류
 
-구현(implementation)
+구현
+
+### 제출 일자
+
+2024년 3월 26일 02:56:22
 
 ### 문제 설명
 
@@ -18,11 +22,11 @@
 
 <p>다음과 같은 N=6인 경우 지도를 살펴보자.</p>
 
-<p style="text-align:center"><img alt="" src="" style="height:250px; width:250px"></p>
+<p style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/14890/1.png" style="height:250px; width:250px"></p>
 
 <p>이때, 길은 총 2N개가 있으며, 아래와 같다.</p>
 
-<p style="text-align:center"><img alt="" src="" style="height:290px; width:290px"></p>
+<p style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/14890/2.png" style="height:290px; width:290px"></p>
 
 <p>길을 지나갈 수 있으려면 길에 속한 모든 칸의 높이가 모두 같아야 한다. 또는, 경사로를 놓아서 지나갈 수 있는 길을 만들 수 있다. 경사로는 높이가 항상 1이며, 길이는 L이다. 또, 개수는 매우 많아 부족할 일이 없다. 경사로는 낮은 칸과 높은 칸을 연결하며, 아래와 같은 조건을 만족해야한다.</p>
 
@@ -43,11 +47,11 @@
 
 <p>L = 2인 경우에 경사로를 놓을 수 있는 경우를 그림으로 나타내면 아래와 같다.</p>
 
-<p style="text-align:center"><img alt="" src="" style="height:107px; width:687px"></p>
+<p style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/14890/3.png" style="height:107px; width:687px"></p>
 
 <p>경사로를 놓을 수 없는 경우는 아래와 같다.</p>
 
-<p style="text-align:center"><img alt="" src="" style="height:158px; width:1023px"></p>
+<p style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/14890/4.png" style="height:158px; width:1023px"></p>
 
 <p>위의 그림의 가장 왼쪽부터 1번, 2번, 3번, 4번 예제라고 했을 때, 1번은 높이 차이가 1이 아니라서, 2번은 경사로를 바닥과 접하게 놓지 않아서, 3번은 겹쳐서 놓아서, 4번은 기울이게 놓아서 불가능한 경우이다.</p>
 
